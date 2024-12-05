@@ -1,5 +1,16 @@
 exports.register = async(req, res) => {
     try {
+        const {email, password} = req.body
+        console.log(email, password)
+        // Validate body
+        if (!email){
+            return res.status(400).json({message: 'Email is required!!!'})
+        }
+        if (!password){
+            return res.status(400).json({message: 'Password is required!!!'})
+        }
+
+
         res.send('Hellow Register In Controller')
 
     } catch (err) {
