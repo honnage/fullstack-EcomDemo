@@ -1,0 +1,7 @@
+npm init -y
+
+npm install prisma
+npx prisma init
+npm install @prisma/client
+
+npx prisma migrate dev --name ecom
