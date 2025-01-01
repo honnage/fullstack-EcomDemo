@@ -1,5 +1,14 @@
+const prisma = require("../config/prisma")
+
 exports.create = async(req, res) => {
     try {
+        const { name } = req.body
+        const category = await prisma.category.create({
+            data: {
+                name: name
+            }
+        })
+        console.log(category, name)
         res.send('Hellow category create')
 
     } catch (err) {
@@ -10,7 +19,8 @@ exports.create = async(req, res) => {
 
 exports.list = async(req, res) => {
     try {
-        res.send('Hellow category list')
+        const category = await prisma.category.findMany()
+        res.send(category)
 
     } catch (err) {
         console.log(err)
@@ -18,11 +28,17 @@ exports.list = async(req, res) => {
     }
 }
 
+
 exports.remove = async(req, res) => {
     try {
         const { id } = req.params
-        console.log(id)
-        res.send('Hellow category delete')
+        const category = await prisma.category.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        res.send(`delete data id:${id} success`)
 
     } catch (err) {
         console.log(err)

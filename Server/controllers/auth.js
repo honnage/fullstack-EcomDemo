@@ -73,7 +73,7 @@ exports.login = async(req, res) => {
         }
 
         // const secretKey = process.env.SECRET_KEY || 'systeam_password';
-        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1h" }, (err, token) => {
+        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1d" }, (err, token) => {
             if (err) {
                 return res.status(500).json({ message: "Server Error" })
             }
