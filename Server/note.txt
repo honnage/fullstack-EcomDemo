@@ -1,5 +1,7 @@
 npm init -y
 
+npm install bcryptjs jsonwebtoken
+
 npm install prisma
 npx prisma init
 npm install @prisma/client
