@@ -9,7 +9,7 @@ exports.create = async(req, res) => {
             }
         })
         console.log(category, name)
-        res.send('Hellow category create')
+        res.send('Hellow create category')
 
     } catch (err) {
         console.log(err)
