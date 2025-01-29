@@ -7,3 +7,4 @@ npx prisma init
 npm install @prisma/client
 
 npx prisma migrate dev --name ecom
+npx prisma migrate dev --name updatecategoryId

@@ -38,6 +38,8 @@ model Product {
   orderItems  productOnOrder[]
   cartItems   productOnCart[]
   images      Image[]
+  category    Category?        @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 }
@@ -66,6 +68,7 @@ model productOnOrder {
 model Category {
   id        Int      @id @default(autoincrement())
   name      String
+  products  Product[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
