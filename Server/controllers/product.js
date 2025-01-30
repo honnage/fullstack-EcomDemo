@@ -49,7 +49,38 @@ exports.list = async (req, res) => {
 
 exports.update = async(req, res) => {
     try {
-        res.send('update Product')
+        const { title, description, price, quantity, categoryId, images } = req.body
+        // console.log(title, description, price, quantity, images )
+
+        // clear image old
+        await prisma.image.deleteMany({
+            where: {
+                productId: Number(req.params.id)
+            }
+        })
+
+        const product = await prisma.product.update({
+            where: {
+                id: Number(req.params.id)
+            },
+
+            data: {
+                title: title,
+                description: description,
+                price: parseFloat(price),
+                quantity: parseInt(quantity),
+                categoryId: parseInt(categoryId),
+                images: {
+                    create: images.map((item) => ({
+                        asset_id: item.asset_id,
+                        public_id: item.public_id,
+                        url: item.url,
+                        secure_url: item.secure_url
+                    }))
+                }
+            }
+        })
+        res.send(product)
 
     } catch (err) {
         console.log(err)
@@ -59,7 +90,15 @@ exports.update = async(req, res) => {
 
 exports.remove = async(req, res) => {
     try {
-        res.send(`delete data  success`)
+        const { id } = req.params
+
+        await prisma.product.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        res.send('delete success')
 
     } catch (err) {
         console.log(err)
