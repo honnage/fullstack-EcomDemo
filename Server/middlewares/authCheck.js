@@ -30,3 +30,22 @@ exports.authCheck = async (req, res, next) => {
         res.status(500).json({message: 'Token Invalid'})
     }
 }
+
+
+exports.adminCheck = async(req, res, next) => {
+    try{
+        const  {email} = req.user
+        const adminUser = await prisma.user.findFirst({
+            where: { email: email}
+        })
+
+        if (!adminUser || adminUser.role != 'admin') {
+            return res.status(403).json({message: 'Access Denied Admin'})
+        }
+        console.log('check adminUser', adminUser)
+        next()
+    } catch(err){
+        console.log(err)
+        res.status(500).json({message: 'Error Admin access denied'})
+    }
+}
