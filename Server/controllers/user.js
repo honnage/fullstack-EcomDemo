@@ -1,4 +1,5 @@
 const prisma = require("../config/prisma")
+const { use } = require("../routes/user")
 
 exports.listUsers = async (req, res) => {
     try{
@@ -21,14 +22,9 @@ exports.listUsers = async (req, res) => {
 exports.changeStatus = async(req, res) => {
     try{
         const { id , enabled} = req.body
-        console.log(id, enabled)
         const user = await prisma.user.update({
-            where: {
-                id: Number(id)
-            },
-            data: {
-                enabled: enabled
-            }
+            where: { id: Number(id)},
+            data: { enabled: enabled }
         })
         res.send('Update changeStatus Success')
     } catch(err){
@@ -39,7 +35,12 @@ exports.changeStatus = async(req, res) => {
 
 exports.changeRole = async(req, res) => {
     try{
-        res.send('Hello changeRole')
+        const { id , role} = req.body
+        const user = await prisma.user.update({
+            where: { id: Number(id)},
+            data: { role: role }
+        })
+        res.send('Update Role Success')
     } catch(err){
         console.log(err)
         res.status(500).json({message: 'Server Error'})
@@ -48,7 +49,52 @@ exports.changeRole = async(req, res) => {
 
 exports.userCart = async(req, res) => {
     try{
-        res.send('Hello userCart')
+        const { cart } = req.body
+        console.log(cart)
+        console.log(req.user.id)
+
+        const user = await prisma.user.findFirst({
+            where: { id: Number(req.user.id)}
+        })
+        console.log(user)
+
+        // delete old Card item
+        await prisma.productOnCart.deleteMany({
+            where : {
+                cart: {
+                    orderById: user.id
+                }
+            }
+        })
+        // Delete old Card
+        await prisma.cart.deleteMany({
+            where: { orderById: user.id }
+        })
+        // เตรียมข้อมูลสินค้า
+
+        let product = cart.map((item) => ({
+            productId: item.id,
+            count: item.count,
+            price: item.price
+        }))
+
+        // หาผลรวม
+        let cartTotal = product.reduce((sum, item) => sum + item.price * item.count, 0)
+        console.log(cartTotal)
+
+        // New Card
+        const newCart = await prisma.cart.create({
+            data: {
+                products: {
+                    create: product
+                },
+                cartTotal: cartTotal,
+                orderById: user.id
+            }
+        })
+        console.log(newCart)
+
+        res.send('Add Cart ok')
     } catch(err){
         console.log(err)
         res.status(500).json({message: 'Server Error'})
