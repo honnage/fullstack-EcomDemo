@@ -45,14 +45,18 @@ model Product {
 }
 
 model Order {
-  id          Int              @id @default(autoincrement())
-  products    productOnOrder[]
-  cartToTal   Float
-  orderStatus String           @default("Not Process")
-  orderBy     User             @relation(fields: [orderById], references: [id])
-  orderById   Int
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  id              Int              @id @default(autoincrement())
+  products        productOnOrder[]
+  cartTotal       Float
+  orderStatus     String           @default("Not Process")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  orderBy       User             @relation(fields: [orderById], references: [id])
+  orderById     Int
+  // stripePaymentId String
+  // amount          Int
+  // status          String
+  // currentcy       String
 }
 
 model productOnOrder {
@@ -85,9 +89,9 @@ model Cart {
 
 model productOnCart {
   id        Int     @id @default(autoincrement())
-  cart      Cart    @relation(fields: [cartId], references: [id])
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
   count     Int
   price     Float
