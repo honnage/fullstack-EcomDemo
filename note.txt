@@ -1,1 +1,5 @@
 npm create vite@latest -- create frontend
+
+npm i react-router-dom
+npm i asios
+npm i zustand
