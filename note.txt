@@ -1,5 +1,7 @@
+-- frontend
 npm create vite@latest -- create frontend
 npm install @mui/toolpad-core --legacy-peer-deps
+npm install tailwindcss @tailwindcss/vite
 
 npm i react-router-dom
 npm i asios
