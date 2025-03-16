@@ -11,13 +11,22 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@abandonware/noble": "^1.9.2-26",
     "@prisma/client": "^6.0.1",
     "bcryptjs": "^2.4.3",
+    "canvas": "^3.1.0",
     "cors": "^2.8.5",
-    "express": "^4.21.1",
+    "escpos": "^3.0.0-alpha.6",
+    "express": "^4.21.2",
+    "iconv-lite": "^0.6.3",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "prisma": "^6.0.1"
+    "node-thermal-printer": "^4.4.4",
+    "pdfkit": "^0.16.0",
+    "prisma": "^6.0.1",
+    "serialport": "^13.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
