@@ -5,6 +5,7 @@ npm install tailwindcss @tailwindcss/vite
 npm install axios
 npm i react-toastify
 npm i zustand
+npm i lucide-react
 
 npm i react-router-dom
 npm i asios
