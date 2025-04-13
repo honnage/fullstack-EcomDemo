@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import useEcomStore from "../../store/ecom-store";
@@ -10,9 +11,7 @@ const Login = () => {
   const user = useEcomStore((state) => state.user)
   const token = useEcomStore((state) => state.token)
 
-  console.log(user, token)
-
-
+  // console.log(user, token)
   const [form, setForm] = useState({
     email: "",
     password: "",
