@@ -88,7 +88,18 @@ exports.login = async(req, res) => {
 
 exports.currentUser = async(req, res) => {
     try {
-        res.send('Hellow currentUser In Controller')
+        const user = await prisma.user.findFirst({
+            where: {
+                email: req.user.email
+            },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                role: true
+            }
+        })
+        res.json({user})
 
     } catch (err) {
         console.log(err)
