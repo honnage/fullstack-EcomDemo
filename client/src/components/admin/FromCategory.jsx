@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState} from 'react'
 import useEcomStore from '../../store/ecom-store'
 import { createCategory, listCategory, removeCategory } from '../../api/category'
@@ -8,22 +8,24 @@ import { toast } from 'react-toastify'
 const FromCategory = () => {
   const token = useEcomStore((state) => state.token)
   const [name, setName] = useState('')
-  const [categories, setCategories] = useState([])
+  const categories = useEcomStore((state) => state.categories)
+  const getCategory = useEcomStore((state) => state.getCategory)
+  // const [categories, setCategories] = useState([])
 
   useEffect(() => {
     getCategory(token)
   }, [])
 
-  const getCategory = async(token) => {
-    try {
-      const res = await listCategory(token)
-      // console.log(res.data)
-      setCategories(res.data)
-      // console.log(categories)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const getCategory = async(token) => {
+  //   try {
+  //     const res = await listCategory(token)
+  //     // console.log(res.data)
+  //     setCategories(res.data)
+  //     // console.log(categories)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   const handleSubmit = async(e)=> {
     e.preventDefault()
