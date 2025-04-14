@@ -1,9 +1,9 @@
-import React from 'react'
+import FromProducts from '../../components/admin/FromProducts'
 
 const Product = () => {
   return (
     <div>
-      Product
+      <FromProducts />
     </div>
   )
 }
