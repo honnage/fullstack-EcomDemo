@@ -1,9 +1,10 @@
 import React from 'react'
+import FromCategory from '../../components/admin/FromCategory'
 
 const Category = () => {
   return (
     <div>
-      Category
+      <FromCategory/>
     </div>
   )
 }

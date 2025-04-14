@@ -8,8 +8,8 @@ exports.create = async(req, res) => {
                 name: name
             }
         })
-        console.log(category, name)
-        res.send('Hellow create category')
+        // console.log(category, name)
+        res.send(name)
 
     } catch (err) {
         console.log(err)
@@ -38,7 +38,7 @@ exports.remove = async(req, res) => {
             }
         })
 
-        res.send(`delete data id:${id} success`)
+        res.send(category)
 
     } catch (err) {
         console.log(err)
