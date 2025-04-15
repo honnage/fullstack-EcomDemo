@@ -6,7 +6,11 @@ npm install axios
 npm i react-toastify
 npm i zustand
 npm i lucide-react
+npm i react-image-file-resizer
 
 npm i react-router-dom
 npm i asios
 npm i zustand
+
+
+npm i cloudinary

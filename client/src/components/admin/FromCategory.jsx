@@ -47,7 +47,7 @@ const FromCategory = () => {
 
   const handleRemove = async(id) => {
     try {
-      console.log('handleRemove', id)
+      // console.log('handleRemove', id)
       const res = await removeCategory(token, id)
       // console.log(res.data)
       toast.success(`Delete Category ${res.data.name} success!!!`)
