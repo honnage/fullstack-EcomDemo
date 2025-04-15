@@ -6,11 +6,11 @@ import { toast } from "react-toastify";
 import UploadFile from "../admin/UploadFile";
 
 const initialState = {
-    title: "ram8gb",
-    description: "desc",
-    price: 400,
-    quantity: 10,
-    categoryId: 1,
+    title: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    categoryId: "",
     images: [],
 };
 
@@ -101,19 +101,20 @@ const FromProducts = () => {
                     onChange={handleOnChange}
                     required
                     value={form.categoryId}
-                >
+                    >
                     <option value="" disabled>
                         Please Select
                     </option>
                     {categories.map((item, index) => (
                         <option key={index} value={item.id}>
-                            {item.name}
+                        {item.name}
                         </option>
                     ))}
                 </select>
 
                 <hr />
-                <UploadFile form={form} setForm={setForm}/>
+                <UploadFile form={form} setForm={setForm} />
+    
 
                 <hr />
                 <button
