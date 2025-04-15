@@ -4,6 +4,7 @@ import useEcomStore from "../../store/ecom-store";
 import { createProduct } from "../../api/product";
 import { toast } from "react-toastify";
 import UploadFile from "../admin/UploadFile";
+import { Link } from "react-router-dom";
 
 const initialState = {
     title: "",
@@ -130,6 +131,7 @@ const FormProducts = () => {
                     <thead>
                         <tr className="bg-gray-200 border">
                             <th scope="col">No.</th>
+                            <th scope="col">รุปภาพ</th>
                             <th scope="col">ชื่อสินค้า</th>
                             <th scope="col">รายละเอียด</th>
                             <th scope="col">ราคา</th>
@@ -145,6 +147,13 @@ const FormProducts = () => {
                             return (
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
+                                    <td>
+                                        {
+                                            item.images.length > 0
+                                            ? <img className="w-24 h-24 rounded-lg  shadow-md" src={item.images[0].url}/>
+                                            : <div className="w-24 h-24 bg-gray-200 rounde-md flew items-center justify-center">No Image</div>
+                                        }
+                                    </td>
                                     <td>{item.title}</td>
                                     <td>{item.description}</td>
                                     <td>{item.price}</td>
@@ -152,8 +161,8 @@ const FormProducts = () => {
                                     <td>{item.sold}</td>
                                     <td>{item.updatedAt}</td>
                                     <td>
-                                        <p>แก้ไข</p>
-                                        <p>ลบ</p>
+                                        <p className="bg-yellow-500 rounded-md shadow0md"><Link to={'/admin/product/'+ item.id}>แก้ไข</Link></p>
+                                        <p><Link>ลบ</Link></p>
                                     </td>
                                 </tr>
                             );

@@ -16,6 +16,23 @@ export const listProduct = async(token, count = 10) => {
     })
 }
 
+export const readProduct = async(token, id) => {
+    return await axios.get('http://localhost:3000/api/product/'+ id, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }
+    })
+}
+
+export const updateProduct = async(token, id, form) => {
+    return await axios.put('http://localhost:3000/api/product/'+ id, form, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }
+    })
+}
+
+
 export const uploadFile = async(token, form) => {
     return await axios.post('http://localhost:3000/api/images', {
         image: form
