@@ -1,9 +1,9 @@
-import FromProducts from '../../components/admin/FromProducts'
+import FormProducts from '../../components/admin/FormProducts'
 
 const Product = () => {
   return (
     <div>
-      <FromProducts />
+      <FormProducts />
     </div>
   )
 }

@@ -14,7 +14,7 @@ const initialState = {
     images: [],
 };
 
-const FromProducts = () => {
+const FormProducts = () => {
     const token = useEcomStore((state) => state.token);
     const getCategory = useEcomStore((state) => state.getCategory);
     const categories = useEcomStore((state) => state.categories);
@@ -55,7 +55,7 @@ const FromProducts = () => {
 
     return (
         <div className="container mx-auto p-4 bg-white shadow-md">
-            FromProducts
+            FormProducts
             <form onSubmit={handleSubmit}>
                 <h1>เพิ่มข้อมูลสินค้า</h1>
                 <input
@@ -166,4 +166,4 @@ const FromProducts = () => {
     );
 };
 
-export default FromProducts;
+export default FormProducts;

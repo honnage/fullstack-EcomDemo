@@ -5,7 +5,7 @@ import useEcomStore from '../../store/ecom-store'
 import { createCategory, listCategory, removeCategory } from '../../api/category'
 import { toast } from 'react-toastify'
 
-const FromCategory = () => {
+const FormCategory = () => {
   const token = useEcomStore((state) => state.token)
   const [name, setName] = useState('')
   const categories = useEcomStore((state) => state.categories)
@@ -93,4 +93,4 @@ const FromCategory = () => {
   )
 }
 
-export default FromCategory
+export default FormCategory

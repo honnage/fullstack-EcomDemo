@@ -13,6 +13,8 @@ import LayoutUser from '../layouts/Layoutuser'
 import Dashboard from '../pages/Admin/Dashborad'
 import Category from '../pages/Admin/Category'
 import Product from '../pages/Admin/Product'
+import EditProduct from '../pages/Admin/EditProduct'
+
 import Manage from '../pages/Admin/Manage'
 import HomeUser from '../pages/User/HomeUser'
 
@@ -40,6 +42,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard />},
       { path: 'category', element:  <Category />},
       { path: 'product', element:  <Product />},
+      { path: 'product/:id', element:  <EditProduct />},
       { path: 'manage', element: <Manage /> },
     ]
   },

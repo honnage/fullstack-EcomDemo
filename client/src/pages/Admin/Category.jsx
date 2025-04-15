@@ -1,10 +1,10 @@
 import React from 'react'
-import FromCategory from '../../components/admin/FromCategory'
+import FormCategory from '../../components/admin/FormCategory'
 
 const Category = () => {
   return (
     <div>
-      <FromCategory/>
+      <FormCategory/>
     </div>
   )
 }
