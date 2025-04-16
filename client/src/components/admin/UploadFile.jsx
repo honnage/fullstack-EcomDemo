@@ -4,11 +4,14 @@ import { toast } from 'react-toastify'
 import Resize from 'react-image-file-resizer'
 import { removeFile, uploadFile } from '../../api/product'
 import useEcomStore from '../../store/ecom-store'
+import { Loader} from 'lucide-react'
 
 const UploadFile = ({form, setForm}) => {
     const token = useEcomStore((state) => state.token) 
     const [isLoading, setIsLoading] = useState(false)
+
     const handleOnChange = (e) => {
+        setIsLoading(true)
         const files = e.target.files
 
         if (files){
@@ -42,9 +45,11 @@ const UploadFile = ({form, setForm}) => {
                                 ...form,
                                 images: allFiles
                             })
+                            setIsLoading(false)
                             toast.success('Upload image Success')
                         })
                         .catch((err)=>{
+                            setIsLoading(false)
                             console.log(err)
                         })
                     },
@@ -79,6 +84,10 @@ const UploadFile = ({form, setForm}) => {
     return (
         <div className='my-4'>
             <div className='flex mx-4 gap-4 my-4'>
+                {
+                    isLoading && <Loader className='w-16 h-16 animate-spin'/>
+                }
+                
                 {
                     form.images.map((item, idex) => {
                         return (

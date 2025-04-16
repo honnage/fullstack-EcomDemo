@@ -5,6 +5,7 @@ import { createProduct, deleteProduct } from "../../api/product";
 import { toast } from "react-toastify";
 import UploadFile from "../admin/UploadFile";
 import { Link } from "react-router-dom";
+import { Pencil, Trash } from 'lucide-react'
 
 const initialState = {
     title: "",
@@ -24,7 +25,14 @@ const FormProducts = () => {
     const products = useEcomStore((state) => state.products);
     // console.log(products)
 
-    const [form, setForm] = useState(initialState);
+    const [form, setForm] = useState({
+        title: "",
+        description: "",
+        price: 0,
+        quantity: 0,
+        categoryId: "",
+        images: []
+    });
 
     useEffect(() => {
         getCategory(token)
@@ -176,9 +184,15 @@ const FormProducts = () => {
                                     <td>{item.quantity}</td>
                                     <td>{item.sold}</td>
                                     <td>{item.updatedAt}</td>
-                                    <td className="'flex gap-2">
-                                        <p className="bg-yellow-500 rounded-md shadow-md"><Link to={'/admin/product/'+ item.id}>แก้ไข</Link></p>
-                                        <p className="bg-red-500 rounded-md shadow-md"onClick={()=> handleDelete(item.id)}><Link>ลบ</Link></p>
+                                    <td className="flex gap-2">
+                                        <p className="bg-yellow-500 rounded-md  p-1 
+                                            hover:scale-105 hover:-translate-y-1 hover:duration-200 shadow-md">
+                                            <Link to={'/admin/product/'+ item.id}><Pencil/></Link>
+                                        </p>
+                                        <p className="bg-red-500 rounded-md p-1 
+                                            hover:scale-105 hover:-translate-y-1 hover:duration-200 shadow-md"onClick={()=> handleDelete(item.id)}>
+                                            <Link><Trash /></Link>
+                                        </p>
                                     </td>
                                 </tr>
                             );
