@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import useEcomStore from "../../store/ecom-store";
-import { createProduct } from "../../api/product";
+import { createProduct, deleteProduct } from "../../api/product";
 import { toast } from "react-toastify";
 import UploadFile from "../admin/UploadFile";
 import { Link } from "react-router-dom";
@@ -46,9 +46,25 @@ const FormProducts = () => {
             e.preventDefault()
             console.log(form)
             const res = await createProduct(token, form)
+            setForm(initialState)
+            getProduct(token)
             toast.success(`เพิ่มข้อมูล ${res.data.title} สำเร็จ`)
             console.log(res)
 
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    const handleDelete = async (id) => {
+        try {
+            const res = await deleteProduct(token, id)
+            if(window.confirm('ยืนยันการลบข้อมูล')){
+                // console.log(res)
+                getProduct(token)
+                toast.success(`Delected ${res.data.title} success`)
+            }
         } catch (err) {
             console.log(err)
         }
@@ -160,9 +176,9 @@ const FormProducts = () => {
                                     <td>{item.quantity}</td>
                                     <td>{item.sold}</td>
                                     <td>{item.updatedAt}</td>
-                                    <td>
-                                        <p className="bg-yellow-500 rounded-md shadow0md"><Link to={'/admin/product/'+ item.id}>แก้ไข</Link></p>
-                                        <p><Link>ลบ</Link></p>
+                                    <td className="'flex gap-2">
+                                        <p className="bg-yellow-500 rounded-md shadow-md"><Link to={'/admin/product/'+ item.id}>แก้ไข</Link></p>
+                                        <p className="bg-red-500 rounded-md shadow-md"onClick={()=> handleDelete(item.id)}><Link>ลบ</Link></p>
                                     </td>
                                 </tr>
                             );

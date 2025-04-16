@@ -32,6 +32,13 @@ export const updateProduct = async(token, id, form) => {
     })
 }
 
+export const deleteProduct = async(token, id) => {
+    return await axios.delete('http://localhost:3000/api/product/'+ id, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }
+    })
+}
 
 export const uploadFile = async(token, form) => {
     return await axios.post('http://localhost:3000/api/images', {
